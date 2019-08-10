@@ -11,7 +11,7 @@ from networks import get_graph_path, model_wh
 
 import platform
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'   
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 logger = logging.getLogger('TfPoseEstimator-WebCam')
 logger.setLevel(logging.CRITICAL)
@@ -106,7 +106,23 @@ if __name__ == '__main__':
 
             # TODO ensure it only does this when someone is hailing a taxi.
             # That is, an arm is above their head.
+
+            # define a stationary point where an arm has to pass to hail a taxi
+            # point = nose?
+
+            # using POSE_COCO_BODY_PARTS dictionary
+
+            # Nose = 1
+            # Right arm = RWrist = 4
+            # Left arm = LWrist = 7
+
+            # body parts don't work like this?
+
+            # look into estimator file
+
+
             hail_taxi(image)
+
 
             # Debugging statement: remove before demonstration.
             # print([(POSE_COCO_BODY_PARTS[k], v.x, v.y) for k,v in human.body_parts.items()])
