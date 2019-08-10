@@ -112,16 +112,46 @@ if __name__ == '__main__':
 
             # using POSE_COCO_BODY_PARTS dictionary
 
-            # Nose = 1
+            # Nose = 0
             # Right arm = RWrist = 4
             # Left arm = LWrist = 7
 
+            # print([(POSE_COCO_BODY_PARTS[0], v.y) for v in human.body_parts.items()])
+            # for x in body_parts.values()
+            # print(x)
+
+            # error messages, doesn't work
+
             # body parts don't work like this?
 
-            # look into estimator file
+            # look into estimator file? or network file?
 
+            # top of page is 0, bottom is 1
 
-            hail_taxi(image)
+            # new idea, define the value first, then compare values to other body parts to find lower value, if lower value then hail a taxi
+
+            # change stationary point from nose to neck, better point to hail from
+
+            # body parts can't start form 0, make 1
+
+            Neck = 1
+            LWrist = 1
+            RWrist = 1
+
+            # if,else,elif statements to compare values to y value 
+            # comparing to neck point
+
+            for key,value in human.body_parts.items():
+                if POSE_COCO_BODY_PARTS[key] == "Neck":
+                    Neck = value.y
+                elif POSE_COCO_BODY_PARTS[key] == "RWrist":
+                    RWrist = value.y
+                elif POSE_COCO_BODY_PARTS[key] == "LWrist":
+                    LWrist = value.y
+                if LWrist < Neck or RWrist < Neck:
+                    hail_taxi(image)
+
+            # this works
 
 
             # Debugging statement: remove before demonstration.
